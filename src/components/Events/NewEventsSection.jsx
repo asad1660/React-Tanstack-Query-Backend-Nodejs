@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
 import EventItem from "./EventItem.jsx";
 import { useQuery } from "@tanstack/react-query";
 import { fetchEvents } from "../../util/http.js";
+
 export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["events"],
@@ -33,7 +34,7 @@ export default function NewEventsSection() {
   if (data) {
     content = (
       <ul className="events-list">
-        {data.map((event) => (
+        {data?.map((event) => (
           <li key={event.id}>
             <EventItem event={event} />
           </li>

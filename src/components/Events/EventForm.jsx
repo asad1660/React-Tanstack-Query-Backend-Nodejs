@@ -44,11 +44,13 @@ export default function EventForm({ inputData, onSubmit, children }) {
             message={error.info?.message || "something went wrong"}
           />
         )}
-        <ImagePicker
-          images={data}
-          onSelect={handleSelectImage}
-          selectedImage={selectedImage}
-        />
+        {!isPending && (
+          <ImagePicker
+            images={data}
+            onSelect={handleSelectImage}
+            selectedImage={selectedImage}
+          />
+        )}
       </div>
 
       <p className="control">
